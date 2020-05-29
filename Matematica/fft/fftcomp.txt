@@ -1,0 +1,1 @@
+Computa multiplicação de polinômino em O(n * log(n)), porém tem alto overhead. Considerar O(n * log²(n) * log(log(n))) 
