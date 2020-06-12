@@ -47,7 +47,7 @@ int dfs(int n, int mi) {
 // Dinic
 // runs on O(V²E) and O(sqrt(V)*E) on bipartite graphs
 int main() {
-    / Variables to inicialize
+    // Variables to inicialize
     // n = Number of nodes
     // s = Start Node
     // t = Sink Node
