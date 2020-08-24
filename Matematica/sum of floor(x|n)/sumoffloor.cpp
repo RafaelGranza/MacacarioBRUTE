@@ -4,9 +4,8 @@ using namespace std;
 const int MOD = 1e9 + 7 ;
 
 long long sumoffloor(long long n){
-    long long answer = 0;
-    int i;
-    for (i = 1; (long long)i*i <= n; i++) {
+    long long answer = 0, i;
+    for (i = 1; i*i <= n; i++) {
         answer += n/i;
         answer %= MOD;
     }
