@@ -1,0 +1,50 @@
+struct grafo{
+    int n, diam;
+    vector<int> centros, vis, dist, pai;
+    vector<vector<int>> adj;
+    
+    int bfs(int s){
+        queue<int> q; q.push(s);
+        vis.assign(n+5, 0);
+        dist.assign(n+5, 1e9);
+        pai.assign(n+5, -1);
+        vis[s] = 1;
+        dist[s] = 0;
+        int maxidist = 0, maxinode = 0;
+        while(!q.empty()){
+            int u = q.front(); q.pop();
+            if(dist[u] >= maxidist)
+                maxidist = dist[u], maxinode = u;
+            for(int v : adj[u]){
+                if(dist[u] + 1 < dist[v]){
+                    dist[v] = dist[u] + 1;
+                    pai[v] = u;
+                    q.push(v);
+                }
+            }
+        }
+        diam = max(diam, maxidist);
+        return maxinode;
+    }
+ 
+    grafo(int _n, int s, vector<vector<int>> _adj){
+        diam = 0;
+        adj = _adj;
+        n = _n;
+        int d1 = bfs(s);
+        int d2 = bfs(d1);
+        vector<int> path;
+        int u = d2;
+        while(u != -1){
+            path.push_back(u);
+            u = pai[u];
+        }
+        int len = path.size();
+        if(len%2 == 1) centros.push_back(path[len / 2]);
+        else{
+            centros.push_back(path[len/2]);
+            centros.push_back(path[len/2 - 1]);
+        }
+    }
+    
+};
